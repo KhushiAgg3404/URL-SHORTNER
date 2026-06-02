@@ -13,8 +13,15 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Right side - Login Button */}
-          <div className="flex items-center">
+          {/* Right side - Navigation Buttons */}
+          <div className="flex items-center gap-4">
+            <Link
+              to="/"
+              className="text-gray-700 hover:text-blue-500 text-sm font-medium"
+            >
+              Home
+            </Link>
+
             <Link
               to="/auth"
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium"
