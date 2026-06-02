@@ -13,6 +13,7 @@ import cookieParser from "cookie-parser"
 
 dotenv.config("./.env")
 
+connectDB();
 const app = express();
 
 app.use(cors({
