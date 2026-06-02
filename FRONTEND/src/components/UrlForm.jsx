@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { createShortUrl } from '../api/shortUrl.api'
+import { createShortUrl } from '../api/ShortUrl.api.js'
 import { useSelector } from 'react-redux'
 import { QueryClient } from '@tanstack/react-query'
 import { queryClient } from '../main'
