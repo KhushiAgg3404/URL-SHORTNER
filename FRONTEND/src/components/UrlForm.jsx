@@ -78,7 +78,7 @@ const UrlForm = () => {
         type="submit"
         className="w-full py-3 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 hover:shadow-lg transition-all duration-200"
       >
-        Shorten URL 🚀
+        Shorten URL 
       </button>
 
       {error && (
