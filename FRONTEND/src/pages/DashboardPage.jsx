@@ -17,9 +17,8 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-purple-100 py-10 px-4">
-      <div className="max-w-5xl mx-auto">
-        
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-purple-100 flex justify-center px-4 py-10">
+      <div className="w-full max-w-5xl">
         <div className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-xl rounded-3xl p-8">
           
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
