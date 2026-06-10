@@ -12,6 +12,8 @@ const UrlForm = () => {
   const [customSlug, setCustomSlug] = useState("");
   const { isAuthenticated } = useSelector((state) => state.auth);
 
+  console.log("AUTH:", isAuthenticated);
+
   const handleSubmit = async () => {
     try {
       const shortUrl = await createShortUrl(url, customSlug);
@@ -52,7 +54,9 @@ const UrlForm = () => {
           className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
         />
       </div>
-
+      <p className="text-red-500">
+        {isAuthenticated ? "LOGGED IN" : "LOGGED OUT"}
+      </p>
       {isAuthenticated && (
         <div>
           <label
@@ -78,7 +82,7 @@ const UrlForm = () => {
         type="submit"
         className="w-full py-3 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 hover:shadow-lg transition-all duration-200"
       >
-        Shorten URL 
+        Shorten URL
       </button>
 
       {error && (
@@ -103,11 +107,10 @@ const UrlForm = () => {
 
             <button
               onClick={handleCopy}
-              className={`px-5 py-3 rounded-xl font-medium transition-all duration-200 ${
-                copied
-                  ? 'bg-green-500 text-white hover:bg-green-600'
-                  : 'bg-indigo-600 text-white hover:bg-indigo-700'
-              }`}
+              className={`px-5 py-3 rounded-xl font-medium transition-all duration-200 ${copied
+                ? 'bg-green-500 text-white hover:bg-green-600'
+                : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                }`}
             >
               {copied ? 'Copied!' : 'Copy'}
             </button>
