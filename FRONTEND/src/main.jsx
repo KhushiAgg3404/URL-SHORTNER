@@ -5,6 +5,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routing/routeTree.js'
 import store from './store/store.js'
 import { Provider } from 'react-redux'
+import AuthInitializer from './components/AuthInitializer';
 
 export const queryClient = new QueryClient()
 const router = createRouter({
@@ -16,9 +17,11 @@ const router = createRouter({
 })
 
 createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
+ <Provider store={store}>
+  <QueryClientProvider client={queryClient}>
+    <AuthInitializer>
       <RouterProvider router={router} />
-    </QueryClientProvider>
-  </Provider>
+    </AuthInitializer>
+  </QueryClientProvider>
+</Provider>
 )

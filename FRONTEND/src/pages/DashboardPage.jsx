@@ -3,13 +3,25 @@ import UrlForm from '../components/UrlForm';
 import UserUrl from '../components/UserUrl';
 import { useNavigate } from '@tanstack/react-router';
 import { logoutUser } from '../api/user.api';
+import { useDispatch } from 'react-redux';
+import { logout } from '../store/slice/authSlice';
+import { queryClient } from '../main';
 
 const DashboardPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = async () => {
     try {
       await logoutUser();
+
+      // Clear Redux auth state
+      dispatch(logout());
+
+      // Clear React Query cache
+      queryClient.clear();
+
+      // Redirect to homepage
       navigate({ to: '/' });
     } catch (error) {
       console.error(error);
@@ -24,7 +36,7 @@ const DashboardPage = () => {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">
-                Dashboard 
+                Dashboard
               </h1>
               <p className="text-gray-500 mt-1">
                 Create and manage your shortened URLs
