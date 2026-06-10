@@ -12,7 +12,7 @@ const UrlForm = () => {
   const [customSlug, setCustomSlug] = useState("");
   const { isAuthenticated } = useSelector((state) => state.auth);
 
-  console.log("AUTH:", isAuthenticated);
+  
 
   const handleSubmit = async () => {
     try {
