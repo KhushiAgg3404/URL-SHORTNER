@@ -54,9 +54,7 @@ const UrlForm = () => {
           className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
         />
       </div>
-      <p className="text-red-500">
-        {isAuthenticated ? "LOGGED IN" : "LOGGED OUT"}
-      </p>
+  
       {isAuthenticated && (
         <div>
           <label
