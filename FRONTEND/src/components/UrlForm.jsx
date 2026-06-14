@@ -11,7 +11,7 @@ const UrlForm = () => {
   const [customSlug, setCustomSlug] = useState("");
   const { isAuthenticated } = useSelector((state) => state.auth);
 
-  
+
 
   const handleSubmit = async () => {
     try {
@@ -53,7 +53,7 @@ const UrlForm = () => {
           className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
         />
       </div>
-  
+
       {isAuthenticated && (
         <div>
           <label
@@ -67,7 +67,13 @@ const UrlForm = () => {
             type="text"
             id="customSlug"
             value={customSlug}
-            onChange={(event) => setCustomSlug(event.target.value.replace(/\s/g, ''))}
+            onChange={(event) => {
+              const value = event.target.value
+                .replace(/\s/g, '')
+                .replace(/[^a-zA-Z0-9_-]/g, '');
+
+              setCustomSlug(value);
+            }}
             placeholder="Enter custom slug"
             className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
           />
