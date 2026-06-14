@@ -37,12 +37,17 @@ A full-stack URL Shortener application built with the MERN stack that allows use
 * Cookie-Based Authentication
 
 ### Development Tools
+### Development Tools
 
 * Git
 * GitHub
 * VS Code
 * Postman
-* Render (Deployment)
+
+### Deployment
+
+* Netlify (Frontend)
+* Render (Backend)
 
 ---
 
