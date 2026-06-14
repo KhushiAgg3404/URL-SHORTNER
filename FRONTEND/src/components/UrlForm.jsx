@@ -67,7 +67,7 @@ const UrlForm = () => {
             type="text"
             id="customSlug"
             value={customSlug}
-            onChange={(event) => setCustomSlug(event.target.value)}
+            onChange={(event) => setCustomSlug(event.target.value.replace(/\s/g, ''))}
             placeholder="Enter custom slug"
             className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
           />
