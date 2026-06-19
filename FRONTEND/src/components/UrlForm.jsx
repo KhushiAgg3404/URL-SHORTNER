@@ -4,14 +4,12 @@ import { useSelector } from 'react-redux';
 import { queryClient } from '../main';
 
 const UrlForm = () => {
-  const [url, setUrl] = useState("https://www.google.com");
+  const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState();
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState(null);
-  const [customSlug, setCustomSlug] = useState("");
+  const [customSlug, setCustomSlug] = useState('');
   const { isAuthenticated } = useSelector((state) => state.auth);
-
-
 
   const handleSubmit = async () => {
     try {
@@ -38,7 +36,7 @@ const UrlForm = () => {
       <div>
         <label
           htmlFor="url"
-          className="block text-sm font-semibold text-gray-700 mb-2"
+          className="block text-sm font-semibold text-gray-800 mb-2"
         >
           Enter your URL
         </label>
@@ -47,10 +45,10 @@ const UrlForm = () => {
           type="url"
           id="url"
           value={url}
-          onInput={(event) => setUrl(event.target.value)}
+          onChange={(event) => setUrl(event.target.value)}
           placeholder="https://example.com"
           required
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+          className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-900 focus:ring-4 focus:ring-gray-100 transition-all"
         />
       </div>
 
@@ -58,7 +56,7 @@ const UrlForm = () => {
         <div>
           <label
             htmlFor="customSlug"
-            className="block text-sm font-semibold text-gray-700 mb-2"
+            className="block text-sm font-semibold text-gray-800 mb-2"
           >
             Custom URL (Optional)
           </label>
@@ -75,7 +73,7 @@ const UrlForm = () => {
               setCustomSlug(value);
             }}
             placeholder="Enter custom slug"
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-900 focus:ring-4 focus:ring-gray-100 transition-all"
           />
         </div>
       )}
@@ -83,19 +81,19 @@ const UrlForm = () => {
       <button
         onClick={handleSubmit}
         type="submit"
-        className="w-full py-3 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 hover:shadow-lg transition-all duration-200"
+        className="w-full py-3 rounded-xl font-semibold text-white bg-gray-900 hover:bg-black transition-all duration-200"
       >
         Shorten URL
       </button>
 
       {error && (
-        <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm">
+        <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
           {error}
         </div>
       )}
 
       {shortUrl && (
-        <div className="mt-6 p-5 bg-gray-50 border border-gray-200 rounded-2xl">
+        <div className="mt-6 p-5 bg-white border border-gray-200 rounded-2xl shadow-sm">
           <h2 className="text-lg font-semibold text-gray-900 mb-3">
             Your Shortened URL
           </h2>
@@ -105,15 +103,16 @@ const UrlForm = () => {
               type="text"
               readOnly
               value={shortUrl}
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-xl bg-white text-gray-700"
+              className="flex-1 px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 text-gray-700"
             />
 
             <button
               onClick={handleCopy}
-              className={`px-5 py-3 rounded-xl font-medium transition-all duration-200 ${copied
-                ? 'bg-green-500 text-white hover:bg-green-600'
-                : 'bg-indigo-600 text-white hover:bg-indigo-700'
-                }`}
+              className={`px-5 py-3 rounded-xl font-medium transition-all duration-200 ${
+                copied
+                  ? 'bg-green-600 text-white hover:bg-green-700'
+                  : 'bg-gray-900 text-white hover:bg-black'
+              }`}
             >
               {copied ? 'Copied!' : 'Copy'}
             </button>
