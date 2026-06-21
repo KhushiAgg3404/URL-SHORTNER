@@ -15,13 +15,9 @@ const DashboardPage = () => {
     try {
       await logoutUser();
 
-      // Clear Redux auth state
       dispatch(logout());
-
-      // Clear React Query cache
       queryClient.clear();
 
-      // Redirect to homepage
       navigate({ to: '/' });
     } catch (error) {
       console.error(error);
@@ -29,37 +25,49 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-purple-100 flex justify-center px-4 py-10">
-      <div className="w-full max-w-5xl">
-        <div className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-xl rounded-3xl p-8">
-          
+    <div className="min-h-screen bg-gray-50 px-4 py-10">
+      <div className="max-w-5xl mx-auto">
+
+        <div className="bg-white border border-gray-200 rounded-3xl shadow-lg p-8">
+
+          {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <div className="inline-block px-4 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium mb-3">
                 Dashboard
+              </div>
+
+              <h1 className="text-3xl font-bold text-gray-900">
+                Manage Your Links
               </h1>
-              <p className="text-gray-500 mt-1">
-                Create and manage your shortened URLs
+
+              <p className="text-gray-500 mt-2">
+                Create, organize, and access all your shortened URLs in one place.
               </p>
             </div>
 
             <button
               onClick={handleLogout}
-              className="px-5 py-3 rounded-xl font-semibold text-white bg-red-500 hover:bg-red-600 transition-all duration-200 hover:shadow-lg"
+              className="px-5 py-3 rounded-xl font-semibold border border-gray-300 text-gray-700 hover:bg-gray-100 transition-all duration-200"
             >
               Logout
             </button>
+
           </div>
 
-          <div className="mb-10">
+          {/* URL Form */}
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-8">
             <UrlForm />
           </div>
 
+          {/* User URLs */}
           <div className="border-t border-gray-200 pt-8">
             <UserUrl />
           </div>
 
         </div>
+
       </div>
     </div>
   );

@@ -26,14 +26,14 @@ const UserUrl = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center my-8">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-200 border-t-indigo-600"></div>
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900"></div>
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div className="p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl">
+      <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-2xl">
         Error loading your URLs: {error.message}
       </div>
     );
@@ -41,12 +41,13 @@ const UserUrl = () => {
 
   if (!urls?.urls || urls.urls.length === 0) {
     return (
-      <div className="text-center py-10 bg-gray-50 border border-gray-200 rounded-2xl">
-        <h3 className="text-lg font-semibold text-gray-700">
-          No URLs Found
+      <div className="text-center py-12 bg-white border border-gray-200 rounded-2xl">
+        <h3 className="text-lg font-semibold text-gray-900">
+          No URLs Yet
         </h3>
+
         <p className="text-gray-500 mt-2">
-          You haven't created any shortened URLs yet.
+          Create your first shortened link above.
         </p>
       </div>
     );
@@ -54,29 +55,29 @@ const UserUrl = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">
+      <h2 className="text-2xl font-bold text-gray-900 mb-5">
         Your URLs
       </h2>
 
       <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
-        <div className="overflow-x-auto max-h-96">
+        <div className="overflow-x-auto">
           <table className="min-w-full">
-            <thead className="bg-gray-50 border-b border-gray-200 sticky top-0">
+            <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Original URL
                 </th>
 
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Short URL
                 </th>
 
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Clicks
                 </th>
 
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                  Actions
+                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Action
                 </th>
               </tr>
             </thead>
@@ -85,7 +86,7 @@ const UserUrl = () => {
               {[...urls.urls].reverse().map((url) => (
                 <tr
                   key={url._id}
-                  className="hover:bg-indigo-50 transition-colors"
+                  className="hover:bg-gray-50 transition-colors"
                 >
                   <td className="px-6 py-4">
                     <div className="max-w-xs truncate text-sm text-gray-700">
@@ -98,14 +99,14 @@ const UserUrl = () => {
                       href={`${APP_URL}/${url.short_url}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-indigo-600 hover:text-indigo-700 hover:underline text-sm font-medium"
+                      className="text-gray-900 hover:underline font-medium text-sm"
                     >
                       {`${APP_URL}/${url.short_url}`}
                     </a>
                   </td>
 
                   <td className="px-6 py-4">
-                    <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">
+                    <span className="inline-flex rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">
                       {url.clicks} {url.clicks === 1 ? 'click' : 'clicks'}
                     </span>
                   </td>
@@ -120,8 +121,8 @@ const UserUrl = () => {
                       }
                       className={`px-4 py-2 rounded-xl text-sm font-medium text-white transition-all duration-200 ${
                         copiedId === url._id
-                          ? 'bg-green-500 hover:bg-green-600'
-                          : 'bg-indigo-600 hover:bg-indigo-700'
+                          ? 'bg-green-600 hover:bg-green-700'
+                          : 'bg-gray-900 hover:bg-black'
                       }`}
                     >
                       {copiedId === url._id ? 'Copied!' : 'Copy URL'}
