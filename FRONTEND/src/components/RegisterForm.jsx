@@ -10,6 +10,7 @@ const RegisterForm = ({ state }) => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,82 +27,87 @@ const RegisterForm = ({ state }) => {
 
     try {
       const data = await registerUser(name, password, email);
-      setLoading(false);
+
       dispatch(login(data.user));
-      navigate({ to: "/dashboard" });
-      setLoading(false);
+      navigate({ to: '/dashboard' });
     } catch (err) {
-      setLoading(false);
       setError(err.message || 'Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div
+      <form
         onSubmit={handleSubmit}
-        className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-xl rounded-3xl p-8"
+        className="bg-white border border-gray-200 rounded-3xl shadow-lg p-8"
       >
         <div className="text-center mb-8">
+          
+
           <h2 className="text-3xl font-bold text-gray-900">
-            Create Account 🚀
+            Create Account
           </h2>
+
           <p className="mt-2 text-gray-500">
             Start shortening and managing your links
           </p>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm">
+          <div className="mb-5 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
             {error}
           </div>
         )}
 
         <div className="mb-5">
           <label
-            className="block text-sm font-semibold text-gray-700 mb-2"
             htmlFor="name"
+            className="block text-sm font-semibold text-gray-800 mb-2"
           >
             Full Name
           </label>
+
           <input
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
             id="name"
             type="text"
             placeholder="Enter your full name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-900 focus:ring-4 focus:ring-gray-100 transition-all"
           />
         </div>
 
         <div className="mb-5">
           <label
-            className="block text-sm font-semibold text-gray-700 mb-2"
             htmlFor="email"
+            className="block text-sm font-semibold text-gray-800 mb-2"
           >
             Email Address
           </label>
+
           <input
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
             id="email"
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-900 focus:ring-4 focus:ring-gray-100 transition-all"
           />
         </div>
 
         <div className="mb-6">
           <label
-            className="block text-sm font-semibold text-gray-700 mb-2"
             htmlFor="password"
+            className="block text-sm font-semibold text-gray-800 mb-2"
           >
             Password
           </label>
+
           <input
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
             id="password"
             type="password"
             placeholder="Create a password"
@@ -109,34 +115,34 @@ const RegisterForm = ({ state }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={6}
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-900 focus:ring-4 focus:ring-gray-100 transition-all"
           />
         </div>
 
         <button
+          type="submit"
+          disabled={loading}
           className={`w-full py-3 rounded-xl font-semibold text-white transition-all duration-200 ${
             loading
-              ? 'bg-indigo-400 cursor-not-allowed'
-              : 'bg-indigo-600 hover:bg-indigo-700 hover:shadow-lg'
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-gray-900 hover:bg-black'
           }`}
-          type="submit"
-          onClick={handleSubmit}
-          disabled={loading}
         >
           {loading ? 'Creating Account...' : 'Create Account'}
         </button>
 
-        <div className="text-center mt-6">
+        <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?
             <span
               onClick={() => state(true)}
-              className="ml-1 cursor-pointer text-indigo-600 hover:text-indigo-700 font-semibold"
+              className="ml-1 font-semibold text-gray-900 cursor-pointer hover:underline"
             >
               Sign In
             </span>
           </p>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
